@@ -10,7 +10,7 @@ def get_users_path() -> str:
     else:
         return "SOFTWARE\\WOW6432Node\\Crypto Pro\\Settings\\Users"
 
-containers = list()
+containers = dict()
 users_path = get_users_path()
 users = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, users_path)
 

@@ -7,14 +7,14 @@ def clip(value: str):
 
 
 def output(method: str, value: str, *args):
-    if method == "f":
+    if method == "1":
         filename = "cryptoprosn-" + args[0] + ".txt"
         with open(filename, "w") as file:
             file.write(value)
             print("Файл с именем " + filename + " создан в текущей директории")
-    elif method == "c":
+    elif method == "2":
         print(value)
-    elif method == "b":
+    elif method == "3":
         clip(value)
         print("Серийный номер скопирован в буфер обмена")
     else:
@@ -23,7 +23,7 @@ def output(method: str, value: str, *args):
     return None
 
 
-output_method = input("Как вывести серийный номер? Файл (f), консоль (c), буфер (b): ")
+output_method = input("Как вывести серийный номер? Файл (1), консоль (2), буфер (3): ")
 print("\n")
 
 products = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Installer\\UserData\\S-1-5-18\\Products", 0, winreg.KEY_READ | winreg.KEY_WOW64_64KEY)

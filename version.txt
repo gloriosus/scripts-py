@@ -1,1 +1,1 @@
-Product version: 1.0.0
+Product version: 1.0.4

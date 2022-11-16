@@ -1,17 +1,13 @@
 import winreg, random, string, os
 
+
 def generate_container_name(length: int) -> str:
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(length)) + ".000"
 
-def get_users_path() -> str:
-    if not os.path.exists("C:\\Program Files (x86)"):
-        return "SOFTWARE\\Crypto Pro\\Settings\\Users"
-    else:
-        return "SOFTWARE\\WOW6432Node\\Crypto Pro\\Settings\\Users"
 
 containers = dict()
-users_path = get_users_path()
+users_path = "SOFTWARE\\Crypto Pro\\Settings\\Users"
 users = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, users_path)
 
 for i in range(1024):

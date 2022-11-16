@@ -1,4 +1,4 @@
-import winreg, subprocess
+import winreg, subprocess, platform
 
 
 def clip(value: str):
@@ -8,7 +8,8 @@ def clip(value: str):
 
 def output(method: str, value: str, *args):
     if method == "1":
-        filename = "cryptoprosn-" + args[0] + ".txt"
+        computername = platform.node()
+        filename = "cryptoprosn-" + args[0] + "_" + computername + ".txt"
         with open(filename, "w") as file:
             file.write(value)
             print("Файл с именем " + filename + " создан в текущей директории")

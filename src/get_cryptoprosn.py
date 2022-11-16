@@ -1,8 +1,10 @@
 import winreg, subprocess
 
+
 def clip(value: str):
     cmd = "echo " + value.strip() + "|clip"
     return subprocess.check_call(cmd, shell=True)
+
 
 def output(method: str, value: str, *args):
     if method == "f":
@@ -18,13 +20,13 @@ def output(method: str, value: str, *args):
     else:
         print("Способ вывода не был выбран. По-умолчанию будет использоваться консоль")
         print(value)
-    
     return None
+
 
 output_method = input("Как вывести серийный номер? Файл (f), консоль (c), буфер (b): ")
 print("\n")
 
-products = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Installer\\UserData\\S-1-5-18\\Products")
+products = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Installer\\UserData\\S-1-5-18\\Products", 0, winreg.KEY_READ | winreg.KEY_WOW64_64KEY)
 
 for i in range(1024):
     try:

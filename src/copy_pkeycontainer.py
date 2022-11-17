@@ -1,4 +1,4 @@
-import winreg, random, string, os
+import winreg, random, string, os, sys
 
 
 def generate_container_name(length: int) -> str:
@@ -8,7 +8,13 @@ def generate_container_name(length: int) -> str:
 
 containers = dict()
 users_path = "SOFTWARE\\Crypto Pro\\Settings\\Users"
-users = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, users_path)
+
+try:
+    users = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, users_path)
+except:
+    print("Программа не нашла необходимых записей в реестре. Возможно КриптоПро не установлен на этом компьютере")
+    input()
+    sys.exit()
 
 for i in range(1024):
     try:
